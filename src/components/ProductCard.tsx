@@ -12,6 +12,10 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product, theme = 'luxury' }) => {
   const { addToEnquiry, items } = useEnquiry();
   const isInList = items.some((item) => item.product.id === product.id);
+  const [activeImgIdx, setActiveImgIdx] = React.useState(0);
+
+  const images = product.images && product.images.length > 0 ? product.images : [product.image];
+  const activeImage = images[activeImgIdx] || product.image;
 
   const whatsappUrl = createProductWhatsappUrl(product.name, product.subCategory);
 
@@ -26,9 +30,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, theme = 'luxu
       }`}
     >
       {/* Product Image */}
-      <div className="relative aspect-4/3 overflow-hidden bg-[#f5ede0]">
+      <div
+        className="relative aspect-4/3 overflow-hidden bg-[#f5ede0] cursor-pointer"
+        onClick={() => {
+          if (images.length > 1) {
+            setActiveImgIdx((prev) => (prev + 1) % images.length);
+          }
+        }}
+        title={images.length > 1 ? 'Click to toggle product view' : undefined}
+      >
         <img
-          src={product.image}
+          src={activeImage}
           alt={product.name}
           loading="lazy"
           referrerPolicy="no-referrer"
@@ -36,6 +48,26 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, theme = 'luxu
         />
         {/* Subtle Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+        {/* Gallery Indicator Dots */}
+        {images.length > 1 && (
+          <div className="absolute bottom-2.5 right-2.5 z-10 flex items-center gap-1 bg-black/60 backdrop-blur-xs px-2 py-1 rounded-full">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveImgIdx(idx);
+                }}
+                className={`w-1.5 h-1.5 rounded-full transition-all ${
+                  idx === activeImgIdx ? 'bg-[#d4af37] w-3' : 'bg-white/60 hover:bg-white'
+                }`}
+                aria-label={`View photo ${idx + 1}`}
+              />
+            ))}
+          </div>
+        )}
 
         {product.highlight && (
           <div className="absolute top-3 left-3 bg-[#1c140d]/85 text-white/95 text-xs font-semibold px-2.5 py-1 rounded backdrop-blur-sm tracking-wide">

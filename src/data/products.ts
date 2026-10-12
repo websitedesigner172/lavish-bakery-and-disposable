@@ -5,6 +5,7 @@ export interface Product {
   subCategory?: string;
   description: string;
   image: string;
+  images?: string[];
   highlight?: string;
   isSpecial?: boolean;
   unitHint?: string;
@@ -29,7 +30,7 @@ export const PRODUCTS: Product[] = [
     category: 'bakery',
     subCategory: 'Cakes',
     description: 'Elegant multi-tier wedding cakes finished with delicate floral accents, edible pearls, and premium royal icing for your grand wedding celebrations in Kashmir.',
-    image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=80',
+    image: '/src/assets/images/wedding_cake_1791823407028.jpg',
     highlight: 'Grand Multi-Tier',
     unitHint: 'Custom event orders'
   },
@@ -81,8 +82,12 @@ export const PRODUCTS: Product[] = [
     category: 'disposables',
     subCategory: 'Beverage Essentials',
     description: 'Hygienically packaged pure mineral water bottles in 250ml, 500ml, and 1L sizes. Ideal for wedding feasts, corporate seminars, parties, and sports gatherings.',
-    image: '/src/assets/images/water_bottles_1791817002153.jpg',
-    highlight: 'Bulk Crates Available',
+    image: '/src/assets/images/water_bottles_pack_1791823631547.jpg',
+    images: [
+      '/src/assets/images/water_bottles_pack_1791823631547.jpg',
+      '/src/assets/images/water_bottles_1791817002153.jpg'
+    ],
+    highlight: 'Bulk Crates & Singles',
     unitHint: 'Boxes of 24 / 48 / 100 bottles'
   },
   {

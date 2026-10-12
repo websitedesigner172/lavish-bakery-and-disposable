@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MessageCircle, ArrowRight, Sparkles, MapPin, CheckCircle2, ShieldCheck, HeartPulse, PartyPopper } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/products';
 import { createWhatsappUrl } from '../utils/whatsapp';
 
 export const Hero: React.FC = () => {
+  const [activeCakeIdx, setActiveCakeIdx] = useState(0);
+
+  const heroCakes = [
+    {
+      src: '/src/assets/images/birthday_cake_1791816755660.jpg',
+      tag: 'Artisan Bakery',
+      title: 'Birthday Designer Cakes',
+      alt: 'Celebration Birthday Cakes at Lavish Bakery'
+    },
+    {
+      src: '/src/assets/images/wedding_cake_1791823407028.jpg',
+      tag: 'Royal Weddings',
+      title: 'Grand Multi-Tier Cakes',
+      alt: 'Royal Wedding & Nikkah Cakes at Lavish Bakery'
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveCakeIdx((prev) => (prev + 1) % heroCakes.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [heroCakes.length]);
+
   const whatsappHeroUrl = createWhatsappUrl(
     `Hello ${BUSINESS_INFO.name}, I would like to order and enquire about your products.`
   );
@@ -109,18 +133,50 @@ export const Hero: React.FC = () => {
               <div className="relative bg-[#261a10] rounded-2xl p-3 border border-[#4a3523] shadow-2xl">
                 {/* Collage Grid */}
                 <div className="grid grid-cols-2 gap-3">
-                  {/* Image 1: Designer Cake */}
-                  <div className="relative rounded-xl overflow-hidden aspect-4/5 group">
-                    <img
-                      src="/src/assets/images/birthday_cake_1791816755660.jpg"
-                      alt="Celebration Birthday Cakes at Lavish Bakery"
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
-                      <div>
-                        <span className="text-[10px] uppercase font-bold text-[#e5c479] tracking-wider">Artisan Bakery</span>
-                        <p className="text-xs font-bold text-white">Designer Cakes</p>
+                  {/* Image 1: Dual Rotating Cake Showcase */}
+                  <div
+                    className="relative rounded-xl overflow-hidden aspect-4/5 group cursor-pointer select-none"
+                    onClick={() => setActiveCakeIdx((prev) => (prev + 1) % heroCakes.length)}
+                    title="Click to view next celebration cake"
+                  >
+                    {heroCakes.map((cake, idx) => (
+                      <img
+                        key={cake.src}
+                        src={cake.src}
+                        alt={cake.alt}
+                        referrerPolicy="no-referrer"
+                        className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out group-hover:scale-105 ${
+                          idx === activeCakeIdx ? 'opacity-100 scale-100' : 'opacity-0 scale-105 pointer-events-none'
+                        }`}
+                      />
+                    ))}
+
+                    {/* Indicator dots */}
+                    <div className="absolute top-2.5 right-2.5 z-10 flex items-center gap-1.5 bg-black/40 backdrop-blur-xs px-2 py-1 rounded-full">
+                      {heroCakes.map((_, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveCakeIdx(idx);
+                          }}
+                          className={`w-1.5 h-1.5 rounded-full transition-all ${
+                            idx === activeCakeIdx ? 'bg-[#e5c479] w-3' : 'bg-white/50 hover:bg-white/80'
+                          }`}
+                          aria-label={`Show image ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex items-end p-3 pointer-events-none">
+                      <div className="transition-all duration-500">
+                        <span className="text-[10px] uppercase font-bold text-[#e5c479] tracking-wider block">
+                          {heroCakes[activeCakeIdx].tag}
+                        </span>
+                        <p className="text-xs font-bold text-white">
+                          {heroCakes[activeCakeIdx].title}
+                        </p>
                       </div>
                     </div>
                   </div>
