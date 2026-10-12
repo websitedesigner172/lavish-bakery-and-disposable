@@ -20,7 +20,8 @@ export const PRODUCTS: Product[] = [
     category: 'bakery',
     subCategory: 'Cakes',
     description: 'Freshly baked bespoke designer cakes crafted for birthdays, anniversaries, and grand weddings. Available in rich Chocolate Truffle, Red Velvet, Fresh Fruit, Black Forest, and customized fondant art.',
-    image: '/src/assets/images/birthday_cake_1791816755660.jpg',
+    image: '/images/birthday_cake.jpg',
+    images: ['/images/birthday_cake.jpg', '/images/wedding_cake.jpg'],
     highlight: 'Custom Tiers & Designs',
     unitHint: 'Custom weight (1kg, 2kg, multi-tier)'
   },
@@ -30,7 +31,7 @@ export const PRODUCTS: Product[] = [
     category: 'bakery',
     subCategory: 'Cakes',
     description: 'Elegant multi-tier wedding cakes finished with delicate floral accents, edible pearls, and premium royal icing for your grand wedding celebrations in Kashmir.',
-    image: '/src/assets/images/wedding_cake_1791823407028.jpg',
+    image: '/images/wedding_cake.jpg',
     highlight: 'Grand Multi-Tier',
     unitHint: 'Custom event orders'
   },
@@ -82,10 +83,10 @@ export const PRODUCTS: Product[] = [
     category: 'disposables',
     subCategory: 'Beverage Essentials',
     description: 'Hygienically packaged pure mineral water bottles in 250ml, 500ml, and 1L sizes. Ideal for wedding feasts, corporate seminars, parties, and sports gatherings.',
-    image: '/src/assets/images/water_bottles_pack_1791823631547.jpg',
+    image: '/images/water_bottles_pack.jpg',
     images: [
-      '/src/assets/images/water_bottles_pack_1791823631547.jpg',
-      '/src/assets/images/water_bottles_1791817002153.jpg'
+      '/images/water_bottles_pack.jpg',
+      '/images/water_bottles.jpg'
     ],
     highlight: 'Bulk Crates & Singles',
     unitHint: 'Boxes of 24 / 48 / 100 bottles'

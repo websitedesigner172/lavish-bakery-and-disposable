@@ -8,13 +8,13 @@ export const Hero: React.FC = () => {
 
   const heroCakes = [
     {
-      src: '/src/assets/images/birthday_cake_1791816755660.jpg',
+      src: '/images/birthday_cake.jpg',
       tag: 'Artisan Bakery',
       title: 'Birthday Designer Cakes',
       alt: 'Celebration Birthday Cakes at Lavish Bakery'
     },
     {
-      src: '/src/assets/images/wedding_cake_1791823407028.jpg',
+      src: '/images/wedding_cake.jpg',
       tag: 'Royal Weddings',
       title: 'Grand Multi-Tier Cakes',
       alt: 'Royal Wedding & Nikkah Cakes at Lavish Bakery'
@@ -184,8 +184,9 @@ export const Hero: React.FC = () => {
                   {/* Image 2: Wedding & Disposables */}
                   <div className="relative rounded-xl overflow-hidden aspect-4/5 group">
                     <img
-                      src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80"
+                      src="/images/water_bottles_pack.jpg"
                       alt="Wedding packaging & disposables"
+                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
@@ -201,6 +202,7 @@ export const Hero: React.FC = () => {
                     <img
                       src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=700&q=80"
                       alt="Café shakes and coffee"
+                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
@@ -216,6 +218,7 @@ export const Hero: React.FC = () => {
                     <img
                       src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=700&q=80"
                       alt="Fresh trout fish & fitness protein"
+                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">

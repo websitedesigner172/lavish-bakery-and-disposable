@@ -95,6 +95,7 @@ export const EnquiryDrawer: React.FC = () => {
                 <img
                   src={item.product.image}
                   alt={item.product.name}
+                  referrerPolicy="no-referrer"
                   className="w-16 h-16 rounded-lg object-cover shrink-0"
                 />
                 <div className="flex-1 min-w-0">

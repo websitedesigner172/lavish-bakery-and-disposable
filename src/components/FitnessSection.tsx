@@ -90,6 +90,7 @@ export const FitnessSection: React.FC = () => {
                 <img
                   src={supplementItems[0]?.image || 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800&q=80'}
                   alt="Creatine Supplement at Lavish Bakery & Disposables"
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
                 />
               </div>

@@ -13,6 +13,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, theme = 'luxu
   const { addToEnquiry, items } = useEnquiry();
   const isInList = items.some((item) => item.product.id === product.id);
   const [activeImgIdx, setActiveImgIdx] = React.useState(0);
+  const [imgError, setImgError] = React.useState(false);
 
   const images = product.images && product.images.length > 0 ? product.images : [product.image];
   const activeImage = images[activeImgIdx] || product.image;
@@ -39,13 +40,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, theme = 'luxu
         }}
         title={images.length > 1 ? 'Click to toggle product view' : undefined}
       >
-        <img
-          src={activeImage}
-          alt={product.name}
-          loading="lazy"
-          referrerPolicy="no-referrer"
-          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-        />
+        {!imgError ? (
+          <img
+            src={activeImage}
+            alt={product.name}
+            loading="lazy"
+            referrerPolicy="no-referrer"
+            onError={() => setImgError(true)}
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center p-4 bg-gradient-to-br from-[#2b1f14] to-[#1c140d] text-[#e8ca84] text-center">
+            <span className="font-display font-bold text-sm tracking-wide text-white">{product.name}</span>
+            <span className="text-[11px] text-[#c9b4a0] mt-1">{product.subCategory}</span>
+          </div>
+        )}
         {/* Subtle Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
